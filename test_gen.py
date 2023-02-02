@@ -3,8 +3,8 @@ import os
 
 #Defined the number of customers and the number of tests:
 test_th = 0
-
-for N in range(4,101,4):
+a = [10]
+for N in a:
     num_tests = 4
     for test_num in range(num_tests):
         #Create a folder for each test case:
@@ -23,8 +23,8 @@ for N in range(4,101,4):
         #generate symmetric traveling time and distance matrices
         t = [[0] * (N+1) for _ in range(N+1)] 
         c = [[0] * (N+1) for _ in range(N+1)]
-        for i in range(1,N+1):
-            for j in range(1,N+1):
+        for i in range(0,N+1):
+            for j in range(0,N+1):
                 if i != j:
                     t[i][j] = t[j][i] = random.randint(1,15)
                     c[i][j] = c[j][i] = random.randint(1,15)
@@ -39,13 +39,13 @@ for N in range(4,101,4):
             for i in range(1,N+1):
                 f.write(str(e[i]) + ' ' + str(l[i]) + ' ' + str(d[i]) + '\n')
 
-            for i in range(1,N+1):
-                for j in range(1,N+1):
+            for i in range(0,N+1):
+                for j in range(0,N+1):
                     f.write(str(t[i][j]) + ' ')
                 f.write('\n')
             
-            for i in range(1,N+1):
-                for j in range(1, N+1):
+            for i in range(0,N+1):
+                for j in range(0, N+1):
                     f.write(str(c[i][j]) + ' ')
                 f.write('\n')
 
