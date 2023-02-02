@@ -1,4 +1,5 @@
-Test case,N = ?,Output,Running Time
+Test case,N = ?,Output,Running Time 
+0,4,26,0
 1,4,13,0
 2,4,18,0
 3,4,14,0
