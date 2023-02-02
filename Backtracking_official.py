@@ -61,15 +61,22 @@ def run_test(test_case_dir):
     minn_distance = 1e10
     Try(1)
     end_time = time.time()
-    return minn_distance, end_time - start_time
+    if minn_distance == 1e10:
+        return 'No feasible solution', end_time - start_time, n
+    else:
+        return minn_distance, end_time - start_time, n
 
 results = [] #data to be exported to csv
 num_tests = 100 
-tmp = [1,2,3,4,5,6,7,8]
+tmp = [0,1,2,3,4,5,6,7]
 for i in tmp:
     test_case_dir = f'test_cases/test_{i}'
-    output, running_time = run_test(test_case_dir)
-    results.append([i,output, running_time])
+    print(f'Test case {i} is running ...')
+    output, running_time, input_size = run_test(test_case_dir)
+    with open(f'{test_case_dir}/output.txt', 'w') as f:
+        f.write(str(output))
+    print(f'Test case {i} finish in {running_time:.2f} second')
+    results.append([i,input_size,output, running_time])
 
-df = pd.DataFrame(results, columns=['Test case','Output','Running Time'])
-df.to_csv('result.csv',index= False)
+df = pd.DataFrame(results, columns=['Test case','N = ?','Output','Running Time'])
+df.to_csv('result_2.csv',index= False)
