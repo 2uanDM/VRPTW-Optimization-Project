@@ -75,7 +75,7 @@ for i in tmp:
     output, running_time, input_size = run_test(test_case_dir)
     with open(f'{test_case_dir}/output.txt', 'w') as f:
         f.write(str(output))
-    print(f'Test case {i} finish in {running_time:.2f} second')
+    print(f'Test case {i} finished in {running_time:.2f} second')
     results.append([i,input_size,output, running_time])
 
 df = pd.DataFrame(results, columns=['Test case','N = ?','Output','Running Time'])
