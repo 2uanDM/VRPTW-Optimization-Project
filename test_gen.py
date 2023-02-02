@@ -4,7 +4,7 @@ import os
 #Defined the number of customers and the number of tests:
 test_th = 0
 a = [10]
-for N in a:
+for N in range(4,101,4):
     num_tests = 4
     for test_num in range(num_tests):
         #Create a folder for each test case:
