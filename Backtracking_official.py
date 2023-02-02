@@ -68,7 +68,7 @@ def run_test(test_case_dir):
 
 results = [] #data to be exported to csv
 num_tests = 100 
-tmp = [0,1,2,3,4,5,6,7]
+tmp = [0,1,2,3,4,5,6,7] #Since Backtracking costs so much time to run test with big N, so you can choose test to run here
 for i in tmp:
     test_case_dir = f'test_cases/test_{i}'
     print(f'Test case {i} is running ...')
