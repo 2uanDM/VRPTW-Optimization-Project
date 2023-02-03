@@ -32,7 +32,7 @@ def solution():
     time_current = t0
     sum = 0 # total distance moved
     for i in range(1, n+1):
-        if time_current + t[res[i-1]][res[i]] <= customer[res[i]][1]:
+        if time_current + t[res[i-1]][res[i]] + d[res[i]] <= customer[res[i]][1]:
             sum += c[res[i-1]][res[i]]
             time_current += d[res[i]] + t[res[i-1]][res[i]]
         else:
