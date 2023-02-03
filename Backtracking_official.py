@@ -77,6 +77,6 @@ for i in tmp:
         f.write(str(output))
     print(f'Test case {i} finished in {running_time:.2f} second')
     results.append([i,input_size,output, running_time])
-
+print('DONE')
 df = pd.DataFrame(results, columns=['Test case','N = ?','Output','Running Time'])
 df.to_csv('result_2.csv',index= False)
