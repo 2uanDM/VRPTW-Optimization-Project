@@ -79,4 +79,4 @@ for i in tmp:
     results.append([i,input_size,output, running_time])
 print('DONE')
 df = pd.DataFrame(results, columns=['Test case','N = ?','Output','Running Time'])
-df.to_csv('result_2.csv',index= False)
+df.to_csv('result_3.csv',index= False)

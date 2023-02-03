@@ -17,8 +17,9 @@ for N in range(4,101,4):
 
         #generate random e,i,d for each customer 
         e = [random.randint(0,100) for i in range(N+1)]
-        l = [random.randint(e[i],200) for i in range(N+1)]
         d = [random.randint(1,10) for i in range(N+1)]
+        l = [random.randint(e[i] + d[i],200) for i in range(N+1)] #ensure that e[i] + d[i] <= l[i]
+        
 
         #generate symmetric traveling time and distance matrices
         t = [[0] * (N+1) for _ in range(N+1)] 
