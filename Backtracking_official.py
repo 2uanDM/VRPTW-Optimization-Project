@@ -68,7 +68,7 @@ def run_test(test_case_dir):
 
 results = [] #data to be exported to csv
 num_tests = 100 
-tmp = [0,1,2,3,4,5,6,7] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
+tmp = [0,1,2,3,4,5,6,7,8] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
 for i in tmp:
     test_case_dir = f'test_cases/test_{i}'
     print(f'Test case {i} is running ...')
@@ -79,4 +79,4 @@ for i in tmp:
     results.append([i,input_size,output, running_time])
 print('DONE')
 df = pd.DataFrame(results, columns=['Test case','N = ?','Output','Running Time'])
-df.to_csv('result_3.csv',index= False)
+df.to_csv('result_4.csv',index= False)
