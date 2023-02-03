@@ -4,13 +4,13 @@ import os
 #Defined the number of customers and the number of tests:
 test_th = 0
 a = [10]
-for N in range(4,101,4):
+for N in range(2,51,2):
     num_tests = 4
     for test_num in range(num_tests):
         #Create a folder for each test case:
         test_dir = "test_" + str(test_th)
         test_th += 1
-        os.mkdir(test_dir)
+        os.mkdir(test_dir) #create a folder named test_dir
 
         #generate random t0
         t0 = random.randint(0,10)
