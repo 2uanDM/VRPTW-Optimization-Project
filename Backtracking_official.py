@@ -35,9 +35,12 @@ def solution():
     for i in range(1, n+1):
         if time_current + t[res[i-1]][res[i]] + d[res[i]] <= customer[res[i]][1]:
             sum += c[res[i-1]][res[i]]
+            '''If the time at which the delivery man is ready to unload the good isn't reach the earliest
+               time of customer res[k], then he need to wait until time customer[res[k]][0]'''
             if time_current + t[res[i-1]][res[i]] < customer[res[i]][0]:
-                time_current = customer[res[i]][0] - t[res[i-1]][res[i]]
-            time_current += d[res[i]] + t[res[i-1]][res[i]]
+                time_current = customer[res[i]][0] + d[res[i]]  #need to wait
+            else:
+                time_current += d[res[i]] + t[res[i-1]][res[i]]
         else:
             return
     if minn_distance > sum:
@@ -56,10 +59,11 @@ def Try(k): #Backtracking
             mark[i] = 0
 
 def run_test(test_case_dir):
-    global res, mark, t, c, minn_distance,t0
+    global res, mark, t, c, minn_distance,t0,route
     start_time = time.time()
     t = []
     c = []
+    route = []
     input(test_case_dir)
     res = [0 for i in range(n+1)]
     mark = [0 for i in range(n+1)]
@@ -74,8 +78,8 @@ def run_test(test_case_dir):
 results = [] #data to be exported to csv
 num_tests = 100 
 tmp = [0,1,2,3,4,5,6,7,8] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
-for i in range(17):
-    test_case_dir = f'test_cases_ver1/test_{i}'
+for i in range(9):
+    test_case_dir = f'test_cases/test_{i}'
     print(f'Test case {i} is running ...')
     output, running_time, input_size , optimal_route = run_test(test_case_dir)
     with open(f'{test_case_dir}/output.txt', 'w') as f:
