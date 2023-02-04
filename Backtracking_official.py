@@ -2,7 +2,8 @@ import time
 import pandas as pd 
 
 #variable for the problem
-n = t0 = 0
+n = 0
+t0 = 0
 customer = [0] #allowed delivered time of each customer
 d = [0]   #the time needed to deliver each good
 t = [] #traveling time matrix representation
