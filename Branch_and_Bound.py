@@ -107,7 +107,7 @@ def run_test(test_case_dir):
 
 results = [] #data to be exported to csv
 tmp = [2,3] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
-for i in range(20):
+for i in range(28):
     test_case_dir = f'test_cases/test_{i}'
     print(f'Test case {i} is running ...')
     output, running_time, input_size, optimal_route = run_test(test_case_dir)

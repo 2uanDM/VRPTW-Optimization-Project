@@ -119,7 +119,7 @@ def run_test(test_case_dir):
 if __name__ == '__main__':
     results = [] # data to be exported to csv file 
     tmp = [3]  # test-th that you want to run 
-    for i in range(10):
+    for i in range(28):
         test_case_dir = f'test_cases/test_{i}'
         print(f'Test case {i} is running ...')
         output, running_time, input_size , optimal_route = run_test(test_case_dir)
@@ -129,5 +129,5 @@ if __name__ == '__main__':
         results.append([i,input_size,output, running_time,str(optimal_route)])
     print('DONE')
     #Export data to csv file for analysis
-    df = pd.DataFrame(results,  columns=['Test case','N = ?','Output','Running Time','Optimal Route'])
+    df = pd.DataFrame(results,  columns=['Test case','N = ?','Output','Running Time','Nearly Optimal Route'])
     df.to_csv('result_hill_climbing.csv', index = False)
