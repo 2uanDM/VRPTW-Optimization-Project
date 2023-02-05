@@ -8,6 +8,7 @@ customer = [0] #allowed delivered time of each customer
 d = [0]   #the duration of unloading process of each customer's good
 t = [] #traveling time matrix representation
 c = [] #distance matrix representation
+#variable for implementing algorithm
 res = []
 mark = []
 minn_distance = 1e10 
@@ -15,7 +16,7 @@ route = []
 
 def input(test_case_dir):
     input_file = f'{test_case_dir}/input.txt'
-    global n,t0,t,c
+    global n,t0,t,c,customer,d
     with open(input_file, 'r') as f:
         n = int(f.readline())
         t0 = int(f.readline())
@@ -59,11 +60,13 @@ def Try(k): #Backtracking
             mark[i] = 0
 
 def run_test(test_case_dir):
-    global res, mark, t, c, minn_distance,t0,route
+    global res, mark, t, c, minn_distance,t0,route,customer,d
     start_time = time.time()
     t = []
     c = []
     route = []
+    customer = [0]
+    d = [0]
     input(test_case_dir)
     res = [0 for i in range(n+1)]
     mark = [0 for i in range(n+1)]
@@ -76,9 +79,9 @@ def run_test(test_case_dir):
         return minn_distance, end_time - start_time, n , route[-1][1]
 
 results = [] #data to be exported to csv
-num_tests = 100 
-tmp = [0,1,2,3,4,5,6,7,8] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
-for i in range(9):
+
+tmp = [2,3] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
+for i in range(20):
     test_case_dir = f'test_cases/test_{i}'
     print(f'Test case {i} is running ...')
     output, running_time, input_size , optimal_route = run_test(test_case_dir)
@@ -88,4 +91,4 @@ for i in range(9):
     results.append([i,input_size,output, running_time,str(optimal_route)])
 print('DONE')
 df = pd.DataFrame(results, columns=['Test case','N = ?','Output','Running Time','Optimal Route'])
-df.to_csv('result_ver_4.csv',index= False)
+df.to_csv('result_backtracking.csv',index= False)

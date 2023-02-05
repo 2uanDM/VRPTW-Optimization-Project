@@ -18,7 +18,7 @@ route = []
 
 def input(test_case_dir):
     input_file = f'{test_case_dir}/input.txt'
-    global n,t0,c,t
+    global n,t0,c,t,customer,d
     with open(input_file, 'r') as f:
         n = int(f.readline())
         t0 = int(f.readline())
@@ -33,7 +33,7 @@ def input(test_case_dir):
 
 def solution():
     global minn_distance
-    if sum_distance < minn_distance:
+    if sum_distance < minn_distance and time_current <= customer[res[n]][1]:
         minn_distance = sum_distance
         route.append([minn_distance, res[1:]])
 
@@ -79,7 +79,7 @@ def Try(k): #Branching process
             res[k] = 0
 
 def run_test(test_case_dir):
-    global res, mark, t, c, minn_distance, sum_distance,c_min,time_current,t0, route
+    global res, mark, t, c, minn_distance, sum_distance,c_min,time_current,t0, route,customer,d
     start_time = time.time()
     t = []
     c = []
@@ -87,6 +87,8 @@ def run_test(test_case_dir):
     c_min = 1e10
     minn_distance = 1e10
     sum_distance = 0
+    customer = [0]
+    d = [0]
     #get data of each test case
     input(test_case_dir)
     time_current = t0
@@ -104,9 +106,8 @@ def run_test(test_case_dir):
         return minn_distance, end_time - start_time, n , route[-1][1]
 
 results = [] #data to be exported to csv
-num_tests = 100 
-tmp = [1] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
-for i in range(9):
+tmp = [2,3] #Since Backtracking costs so much time to run test with big N, so you can choose test to run
+for i in range(20):
     test_case_dir = f'test_cases/test_{i}'
     print(f'Test case {i} is running ...')
     output, running_time, input_size, optimal_route = run_test(test_case_dir)
@@ -116,4 +117,4 @@ for i in range(9):
     results.append([i,input_size,output, running_time,str(optimal_route)])
 print('DONE')
 df = pd.DataFrame(results, columns=['Test case','N = ?','Output','Running Time','Optimal Route'])
-df.to_csv('result_ver_fix.csv',index= False)
+df.to_csv('result_branch_and_bound.csv',index= False)
