@@ -48,6 +48,10 @@ def Greedy():
         min_distance += feasible[0][1]
         res[k] = feasible[0][0]
         mark[feasible[0][0]] = True
+        if time_current + t[res[k-1]][res[k]] < customer[res[k]][0]:
+                time_current = customer[res[k]][0] + d[res[k]]  #need to wait
+        else:
+            time_current += d[res[k]] + t[res[k-1]][res[k]]
     
     return min_distance, res
 
