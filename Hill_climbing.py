@@ -87,7 +87,7 @@ def Hill_Climbing():
         that we can find
     '''
     #Loop until stucking at local optimal solution
-    while best_neighbor_route_length < current_route_length: 
+    while best_neighbor != [] and (check_TWC(current_sol) == False or best_neighbor_route_length < current_route_length): 
         current_sol = best_neighbor
         current_route_length = best_neighbor_route_length
         neighbors = getNeighbors(current_sol)
@@ -119,7 +119,7 @@ def run_test(test_case_dir):
 if __name__ == '__main__':
     results = [] # data to be exported to csv file 
     tmp = [3]  # test-th that you want to run 
-    for i in range(28):
+    for i in range(20):
         test_case_dir = f'test_cases/test_{i}'
         print(f'Test case {i} is running ...')
         output, running_time, input_size , optimal_route = run_test(test_case_dir)
