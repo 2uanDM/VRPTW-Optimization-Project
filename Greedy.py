@@ -40,10 +40,10 @@ def Greedy():
         for val in range(1,n+1):
             if mark[val] == False and check_TWC(time_current, res, k, val) == True:
                 feasible.append([val, c[res[k-1]][val] ])
-
-        if feasible == []:
+        
+        if feasible == []: #After evaluating all the possible value, if there is no value is feasible -> return
             return -1, -1
-
+        #else find the solution whose cost is the minimum 
         feasible.sort(key = lambda x: x[1])
         min_distance += feasible[0][1]
         res[k] = feasible[0][0]
@@ -76,8 +76,8 @@ def run_test(test_case_dir):
 
 if __name__ == '__main__':
     results = [] # data to be exported to csv file 
-    tmp = [3]  # test-th that you want to run 
-    for i in range(20):
+    tmp = [2]  # test-th that you want to run 
+    for i in range(100):
         test_case_dir = f'test_cases/test_{i}'
         print(f'Test case {i} is running ...')
         output, running_time, input_size , optimal_route = run_test(test_case_dir)
