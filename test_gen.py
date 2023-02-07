@@ -4,9 +4,18 @@ import os
 #Defined the number of customers and the number of tests:
 test_th = 0
 a = [10]
-for N in range(2,51,2):
-    num_tests = 4
-    for test_num in range(num_tests):
+
+def tests(N) -> int:
+    if N in [6,8]:
+        return 30
+    elif N in [10,12,14]:
+        return 10
+    else:
+        return 4
+        
+for N in range(2,17,2):
+    u = tests(N)
+    for test_num in range(u):
         #Create a folder for each test case:
         test_dir = "test_" + str(test_th)
         test_th += 1

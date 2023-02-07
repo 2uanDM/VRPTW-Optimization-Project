@@ -53,7 +53,7 @@ def Greedy():
         else:
             time_current += d[res[k]] + t[res[k-1]][res[k]]
     
-    return min_distance, res
+    return min_distance, res[1:]
 
 def run_test(test_case_dir):
     global n,t0,t,c,customer,d
