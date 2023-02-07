@@ -30,13 +30,13 @@ def check_TWC(time_current,res,k,val): #check the time window constraints
     return False
 
 def Greedy():
-    res = [0 for i in range(n+1)]
-    mark = [False for i in range(n+1)]
+    res = [0 for i in range(n+1)]   #Store the solution
+    mark = [False for i in range(n+1)] #Check whether element i exist in the solution or not
     time_current = t0
-    min_distance = 0
+    min_distance = 0    
 
     for k in range(1,n+1): #Building the k - element
-        feasible = []
+        feasible = []      #Store the values whose time window constraints are satisfied with the built solution
         for val in range(1,n+1):
             if mark[val] == False and check_TWC(time_current, res, k, val) == True:
                 feasible.append([val, c[res[k-1]][val] ])

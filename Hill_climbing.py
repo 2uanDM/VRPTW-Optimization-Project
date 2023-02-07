@@ -25,6 +25,23 @@ def input(test_case_dir):
         for i in range(n+1):
             c.append(list(map(int, f.readline().split())))
 
+def Greedy():
+    res = [0 for i in range(n+1)]   #Store the solution
+    mark = [False for i in range(n+1)] #Check whether element i exist in the solution or not
+    min_distance = 0    
+
+    for k in range(1,n+1): #Building the k - element
+        feasible = []
+        for val in range(1,n+1):
+            if mark[val] == False:
+                feasible.append([val, c[res[k-1]][val]])
+    
+        feasible.sort(key = lambda x: x[1])
+        min_distance += feasible[0][1]
+        mark[feasible[0][0]] = True
+    
+    return res
+
 def randomSolution():
     solution = [i for i in range(1,n+1)] 
     random.shuffle(solution)
@@ -78,7 +95,7 @@ def getBestNeighbor(neighbors):
 
 def Hill_Climbing():
     # Calculating the initial solution
-    current_sol = randomSolution()  
+    current_sol = Greedy()  
     current_route_length = getRoutelength(current_sol)
     neighbors = getNeighbors(current_sol)
     best_neighbor , best_neighbor_route_length = getBestNeighbor(neighbors) 
