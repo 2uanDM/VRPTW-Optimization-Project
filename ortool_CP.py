@@ -47,15 +47,19 @@ def run_test(test_case_dir):
             if i != j:
                 model.Add(s[i] + d[i] + t[i][j] <= s[j]).OnlyEnforceIf(x[i, j])
     
+    # s[0] = the starting time t0
     model.Add(s[0] == t0)
 
+    # Constraint: Must start from point 0
     model.Add(sum(x[0, j] for j in range(1, N+1)) == 1)
     
+    #Constraint: Each customer is visited once
     for i in range(1,N+1):
         model.Add(sum(x[j,i] for j in range(0,N+1) if i!=j) == 1)
     for i in range (0,N+1):
         model.Add(sum(x[i,j] for j in range(1,N+1) if i!=j) <=1)
     
+    #Constraint: For a pair of two customers, there is at most one way from this one to another one
     for i in range(N+1):
         for j in range(N+1):
             if i != j:
@@ -70,8 +74,11 @@ def run_test(test_case_dir):
     status = solver.Solve(model)
 
     end_time = time.time()
+
+    #If there is no optimal soluiton
     if status == 3:
         return 'No feasible solution', end_time - start_time, N , 'No route'
+        
     # Get the optimal solution
     tmp = []
     for i in range(N+1):
