@@ -38,6 +38,7 @@ def Greedy():
     
         feasible.sort(key = lambda x: x[1])
         min_distance += feasible[0][1]
+        res[k] = feasible[0][0]
         mark[feasible[0][0]] = True
     
     return res
@@ -53,18 +54,43 @@ def getRoutelength(solution):
         total_route += c[solution[i-1]][solution[i]]
     return total_route
 
-def getNeighbors(solution):
-    '''
-        Get all the posible neighbors by swapping 2 i,j for all i != j and 1 <= i,j <= n
-    '''
-    neighbors = [] #store the neighbor
+def neighbor_gen(neighbors, solution):
     for i in range(1,n):
         for j in range(i+1,n+1):
             neighbor = solution.copy()
             neighbor[i] = solution[j]
             neighbor[j] = solution[i]
             neighbors.append(neighbor)
-    return neighbors
+
+def getNeighbors(solution):
+    '''
+        Get all the posible neighbors by swapping 2 i,j for all i != j and 1 <= i,j <= n
+    '''
+    neighbors = [] #store the neighbor
+    # First time generating neighbors
+    neighbor_gen(neighbors, solution)
+
+    gen2_neighbor = neighbors.copy()
+
+    for x in neighbors:
+        for i in range(1,n):
+            for j in range(i+1,n+1):
+                neighbor = x.copy()
+                neighbor[i] = x[j]
+                neighbor[j] = x[i]
+                gen2_neighbor.append(neighbor)
+
+    gen3_neighbor = gen2_neighbor.copy()
+
+    for x in gen2_neighbor:
+        for i in range(1,n):
+            for j in range(i+1,n+1):
+                neighbor = x.copy()
+                neighbor[i] = x[j]
+                neighbor[j] = x[i]
+                gen3_neighbor.append(neighbor)
+    
+    return gen3_neighbor
 
 def check_TWC(res):   #check time window constraint
     time_current = t0
@@ -136,7 +162,7 @@ def run_test(test_case_dir):
 if __name__ == '__main__':
     results = [] # data to be exported to csv file 
     tmp = [3]  # test-th that you want to run 
-    for i in range(20):
+    for i in range(28):
         test_case_dir = f'test_cases/test_{i}'
         print(f'Test case {i} is running ...')
         output, running_time, input_size , optimal_route = run_test(test_case_dir)
