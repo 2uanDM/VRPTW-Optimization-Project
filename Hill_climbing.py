@@ -75,9 +75,8 @@ def getNeighbors(solution):
     for x in neighbors:
         for i in range(1,n):
             for j in range(i+1,n+1):
-                neighbor = x.copy()
-                neighbor[i] = x[j]
-                neighbor[j] = x[i]
+                tmp = x[i:j+1]
+                neighbor = x[0:i] + tmp[::-1] + x[j+1:n+1]
                 gen2_neighbor.append(neighbor)
 
     gen3_neighbor = gen2_neighbor.copy()
@@ -85,9 +84,8 @@ def getNeighbors(solution):
     for x in gen2_neighbor:
         for i in range(1,n):
             for j in range(i+1,n+1):
-                neighbor = x.copy()
-                neighbor[i] = x[j]
-                neighbor[j] = x[i]
+                tmp = x[i:j+1]
+                neighbor = x[0:i] + tmp[::-1] + x[j+1:n+1]
                 gen3_neighbor.append(neighbor)
     
     return gen3_neighbor
