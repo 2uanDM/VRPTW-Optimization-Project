@@ -1,4 +1,4 @@
-# Miniproject: Solving VRPTW optimization problem using many Algorithms
+# Project: Solving VRPTW optimization problem using many Algorithms
 
 This repository contains source of many optimizing algorithms for **VRPTW** (Vehicle Routing Problem with Time Windows) such as: 
 
